@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<body>
+    {% if route%}{{route}}{% endif %}
+    <h1>{{route["name"]}}</h1>
+    <h1>{{route["holds"]}}</h1>
+    <table border="1" width="100%">
+        {% for row in board %}
+        <tr>
+            {% for element in row %} {%if element in route["holds"] %}
+            <td style="background-color: green">{{element}}</td>
+            {% else %}
+            <td>{{element}}</td>
+            {% endif %} {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
