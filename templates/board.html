@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+</head>
 <body>
-    {% if route%}{{route}}{% endif %}
+    {% if route%}
     <h1>{{route["name"]}}</h1>
-    <h1>{{route["holds"]}}</h1>
+    {% endif %}
     <table border="1" width="100%">
         {% for row in board %}
         <tr>
-            {% for element in row %} {%if element in route["holds"] %}
-            <td style="background-color: green">{{element}}</td>
+            {% for board_hold in row %} {%if board_hold in positions %}
+            <td class="{{hold_types[positions.index(board_hold)]}}">
+                {{board_hold}}
+            </td>
             {% else %}
-            <td>{{element}}</td>
+            <td>{{board_hold}}</td>
             {% endif %} {% endfor %}
         </tr>
         {% endfor %}

@@ -1,7 +1,7 @@
 import string
-import pprint
 from flask import Flask
 from flask import render_template
+from db import db
 
 
 def create_board(numbRows, numbColumns):
@@ -15,16 +15,21 @@ def create_board(numbRows, numbColumns):
 
 
 def get_route(route_id):
-
-    db = {
-        '111':
-        {
-            "name": "kat in the hat",
-            "holds": ["1a", "3a", "3c", "5c", "3e", "5e"]
-        }
-    }
-
     return db.get(route_id)
+
+
+def get_hold_positions(route_id):
+    positions = []
+    for holds in db[f'{route_id}']["holds"]:
+        positions.append(holds["position"])
+    return positions
+
+
+def get_hold_types(route_id):
+    hold_types = []
+    for holds in db[f'{route_id}']["holds"]:
+        hold_types.append(holds["hold_type"])
+    return hold_types
 
 
 app = Flask(__name__)
@@ -48,4 +53,6 @@ def board(route_id=None):
     numb_columns = 5
     board = create_board(numb_rows, numb_columns)
     route = get_route(route_id) if route_id else None
-    return render_template('board.html', board=board, route=route)
+    positions = get_hold_positions(route_id)
+    hold_types = get_hold_types(route_id)
+    return render_template('board.html', board=board, route=route, positions=positions, hold_types=hold_types)
