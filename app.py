@@ -35,17 +35,6 @@ def get_hold_types(route_id):
 app = Flask(__name__)
 
 
-@ app.route("/")
-def hello_world():
-    return f"<pre>{create_board(4,4)}</pre>"
-
-
-@ app.route('/hello')
-@ app.route('/hello/<name>')
-def hello(name=None):
-    return render_template('hello.html', name=name)
-
-
 @ app.route('/board')
 @ app.route('/board/<route_id>')
 def board(route_id=None):

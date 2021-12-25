@@ -9,5 +9,16 @@ db = {
                   {"position": "5c", "hold_type": "end"},
                   {"position": "5e", "hold_type": "end"}
                   ]
+    },
+    '112':
+    {
+        "name": "jug heaven",
+        "holds": [{"position": "1e", "hold_type": "start"},
+                  {"position": "2a", "hold_type": "intermediate"},
+                  {"position": "4c", "hold_type": "intermediate"},
+                  {"position": "4e", "hold_type": "intermediate"},
+                  {"position": "5a", "hold_type": "end"},
+                  {"position": "5c", "hold_type": "end"}
+                  ]
     }
 }
