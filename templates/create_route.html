@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+</head>
+
+<body>
+    {% if route%}
+    <h1>{{route["name"]}}</h1>
+    {% endif %}
+    <table border="1" width="100%">
+        {% for row in board %}
+        <tr>
+            {% for board_hold in row %}
+            <td>
+                <button onclick="storeRoute('{{board_hold}}')">
+                    {{board_hold}}
+                </button>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <p id="selectedHolds"></p>
+    <script type="text/javascript">
+        function changecolor()
+        const route = [];
+        function storeRoute(hold) {
+            if (route.includes(hold)) {
+                return;
+            }
+            route.push(hold);
+            const makeRoute = document.getElementById("selectedHolds");
+            makeRoute.innerText = `You have selected holds: ${route}`;
+        }
+    </script>
+</body>

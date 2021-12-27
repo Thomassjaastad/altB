@@ -1,3 +1,9 @@
 {
-    "html.format.templating": true
+    "html.format.templating": true,
+    "emmet.includeLanguages": {
+        "jinja-html": "html"
+    },
+    "files.associations": {
+        "*.html": "jinja-html"
+    }
 }

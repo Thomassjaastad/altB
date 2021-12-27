@@ -1,6 +1,5 @@
 import string
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template
 from db import db
 
 
@@ -45,3 +44,11 @@ def board(route_id=None):
     positions = get_hold_positions(route_id)
     hold_types = get_hold_types(route_id)
     return render_template('board.html', board=board, route=route, positions=positions, hold_types=hold_types)
+
+
+@ app.route('/create')
+def create(route_id=None):
+    numb_rows = 5
+    numb_columns = 5
+    board = create_board(numb_rows, numb_columns)
+    return render_template('create_route.html', board=board)
