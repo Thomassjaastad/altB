@@ -20,10 +20,16 @@
         </tr>
         {% endfor %}
     </table>
-    <p id="selectedHolds"></p>
+    <p id="selectedHolds">{{makeRoute}}</p>
     <script type="text/javascript">
-        function changecolor()
         const route = [];
+        document
+            .querySelectorAll("button")
+            .forEach((node) => node.addEventListener("click", changeColor));
+
+        function changeColor() {
+            this.style.backgroundColor = "black";
+        }
         function storeRoute(hold) {
             if (route.includes(hold)) {
                 return;
