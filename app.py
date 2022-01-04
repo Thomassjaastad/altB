@@ -5,34 +5,6 @@ import string
 from db import db
 
 
-def create_board(numbRows, numbColumns):
-    rows = range(1, numbRows + 1)
-    columns = string.ascii_lowercase[:numbColumns]
-    board = [[0]*numbRows for i in range(numbColumns)]
-    for i in range(numbRows):
-        for j in range(numbColumns):
-            board[i][j] = f'{rows[i]}{columns[j]}'
-    return board
-
-
-def get_route(route_id):
-    return db.get(route_id)
-
-
-def get_hold_positions(route_id):
-    positions = []
-    for holds in db[f'{route_id}']["holds"]:
-        positions.append(holds["position"])
-    return positions
-
-
-def get_hold_types(route_id):
-    hold_types = []
-    for holds in db[f'{route_id}']["holds"]:
-        hold_types.append(holds["hold_type"])
-    return hold_types
-
-
 ### UPLOAD FILE ###
 UPLOAD_FOLDER = 'static/images'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -80,6 +52,36 @@ def upload_file():
 def display_image(filename):
     print('display_image filename: ' + filename)
     return redirect(url_for('static', filename='images/' + filename), code=301)
+
+###CREATE_BOARD###
+
+
+def create_board(numbRows, numbColumns):
+    rows = range(1, numbRows + 1)
+    columns = string.ascii_lowercase[:numbColumns]
+    board = [[0]*numbRows for i in range(numbColumns)]
+    for i in range(numbRows):
+        for j in range(numbColumns):
+            board[i][j] = f'{rows[i]}{columns[j]}'
+    return board
+
+
+def get_route(route_id):
+    return db.get(route_id)
+
+
+def get_hold_positions(route_id):
+    positions = []
+    for holds in db[f'{route_id}']["holds"]:
+        positions.append(holds["position"])
+    return positions
+
+
+def get_hold_types(route_id):
+    hold_types = []
+    for holds in db[f'{route_id}']["holds"]:
+        hold_types.append(holds["hold_type"])
+    return hold_types
 
 
 @ app.route('/board')
